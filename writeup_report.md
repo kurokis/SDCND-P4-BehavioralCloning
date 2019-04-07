@@ -37,9 +37,9 @@ The goals / steps of this project are the following:
 [re2]: ./writeup_images/re2.png "Recovery Driving 2"
 [ci_orig]: ./writeup_images/center_image_original.jpg "Center Image Original"
 [ci_flip]: ./writeup_images/center_image_flipped.jpg "Center Image Flipped"
-[im_l]: ./writeup_images/im_l.png "Image Left"
-[im_c]: ./writeup_images/im_c.png "Image Center"
-[im_r]: ./writeup_images/im_r.png "Image Right"
+[im_l]: ./writeup_images/im_l.jpg "Image Left"
+[im_c]: ./writeup_images/im_c.jpg "Image Center"
+[im_r]: ./writeup_images/im_r.jpg "Image Right"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -78,12 +78,14 @@ My model consists of the following:
 
 The model includes RELU activation in all layers except the final layer (code lines 83-92),
 and the data is normalized in the model using a Keras lambda layer (code line 18). 
+Details are described in latter sections.
 
 #### 2. Attempts to reduce overfitting in the model
 
 The model contains a dropout layer right after the final convolutional layer in order to reduce overfitting (model.py line 88). 
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 29). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 29).
+The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
@@ -124,12 +126,9 @@ Here is the training history of the model at this point.
 To combat overfitting, I added a dropout layer and collected more data.
 For details, see sections 2 and 3.
 
-
-
-
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 80-93) consists of a convolution neural network with the following layers.
+The final model architecture (model.py lines 80-93) consists of a convolution neural network with the following layers. There are 348219 parameters in total.
 
 | Layer         		|     Description	        							| 
 |:---------------------:|:-----------------------------------------------------:| 
