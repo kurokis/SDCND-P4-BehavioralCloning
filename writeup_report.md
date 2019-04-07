@@ -1,4 +1,4 @@
-# **Behavioral Cloning** 
+# **Behavioral Cloning Project** 
 
 [//]: # (Image References)
 [autonomous_demo]: ./writeup_images/autonomous_demo.gif "Autonomous Demo"
@@ -17,9 +17,7 @@
 [im_c]: ./writeup_images/im_c.jpg "Image Center"
 [im_r]: ./writeup_images/im_r.jpg "Image Right"
 
----
-
-**Behavioral Cloning Project**
+**Overview**
 
 ![alt text][autonomous_demo]
 
@@ -196,5 +194,5 @@ The ideal number of epochs was 8 as evidenced by the training history for the fi
 
 ![alt_text][training_history_more_data]
 
-Here is [the link](./writeup_video/run1.mp4) to the video of autonomous driving using the final model.
+Here is [a link](./writeup_video/video.mp4) to the video of autonomous driving using the final model.
 
