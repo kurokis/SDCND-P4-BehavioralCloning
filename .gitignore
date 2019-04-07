@@ -1,1 +1,6 @@
 load_training_data.sh
+data
+run1
+
+save_model_weights.py
+model_weights.h5

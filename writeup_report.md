@@ -27,6 +27,19 @@ The goals / steps of this project are the following:
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
 [training_history_one_lap]: ./writeup_images/training_history_one_lap.png "Training History One Lap"
+[training_history_more_data]: ./writeup_images/training_history_more_data.png "Training History More Data"
+[architecture]: ./writeup_images/architecture.png "Architecture"
+[cl0]: ./examples/cl0.png "Center Lane Driving 0"
+[cl1]: ./examples/cl1.png "Center Lane Driving 1"
+[cl2]: ./examples/cl2.png "Center Lane Driving 2"
+[re0]: ./examples/re0.png "Recovery Driving 0"
+[re1]: ./examples/re1.png "Recovery Driving 1"
+[re2]: ./examples/re2.png "Recovery Driving 2"
+[ci_orig]: ./examples/center_image_original.jpg "Center Image Original"
+[ci_flip]: ./examples/center_image_flipped.jpg "Center Image Flipped"
+[im_l]: ./examples/im_l.png "Image Left"
+[im_c]: ./examples/im_c.png "Image Center"
+[im_r]: ./examples/im_r.png "Image Right"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -111,40 +124,84 @@ Here is the training history of the model at this point.
 To combat overfitting, I added a dropout layer and collected more data.
 For details, see sections 2 and 3.
 
+
+
+
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 80-93) consisted of a convolution neural network with the following layers.
+The final model architecture (model.py lines 80-93) consists of a convolution neural network with the following layers.
 
+| Layer         		|     Description	        							| 
+|:---------------------:|:-----------------------------------------------------:| 
+| Input         		| 160x320x1 RGB image  									| 
+| Normalization			| Normalize within range (-0.5, 0.5)					|
+| Cropping				| Crop image, outputs 65x320x3							|
+| Convolution 5x5     	| 2x2 stride, valid padding, RELU, outputs 31x158x24 	|
+| Convolution 5x5	    | 2x2 stride, valid padding, RELU, outputs 14x77x36 	|
+| Convolution 5x5	    | 2x2 stride, valid padding, RELU, outputs 5x37x48 		|
+| Convolution 3x3	    | 1x1 stride, valid padding, RELU, outputs 3x35x64	 	|
+| Convolution 3x3	    | 1x1 stride, valid padding, RELU, outputs 1x33x64 		|
+| Flatten		      	| inputs 1x33x64,  outputs 2112							|
+| Fully connected       | inputs 2112, RELU,  outputs 100	    				|
+| Fully connected       | inputs 100, RELU,  outputs 50   						|
+| Fully connected       | inputs 50, RELU,  outputs 10    						|
+| Fully connected       | inputs 10,  outputs 1	    							|
 
+Here is a visualization of the architecture after cropping.
+This diagram was drawn with [the NN-SVG tool](http://alexlenail.me/NN-SVG/AlexNet.html).
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+![alt text][architecture]
 
-![alt text][image1]
+I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+To capture good driving behavior, I first recorded two normal laps and one reverse lap on track one using center lane driving.
+Here is an example image of center lane driving:
 
-![alt text][image2]
+![alt text][cl0]
+![alt text][cl1]
+![alt text][cl2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to drive back to the center lane
+in case it veers off to the side.
+These images show what a recovery looks like:
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+![alt text][re0]
+![alt text][re1]
+![alt text][re2]
 
-Then I repeated this process on track two in order to get more data points.
+Then I recorded another normal lap on track one with focus on smooth turns.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+To augment the dataset, I used flipped images and angles. 
+This would eliminate bias towards turning direction and therefore better generalize driving behavior.
+For example, here is an example image and an image that has then been flipped:
 
-![alt text][image6]
-![alt text][image7]
+![alt text][ci_orig]
+![alt text][ci_flip]
 
-Etc ....
+Also, I used images from left and right cameras in addition to the center camera.
+For the left image, I added an artifical steering correction of 0.1 degree which would make the model
+learn to drive back to the center. For the right image, I subtracted the same correction factor.
+Here are the left, center, and right camera images taken at the same timestamp.
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+![alt text][im_l]
+![alt text][im_c]
+![alt text][im_r]
+
+After the collection process, I had 11299 images.
+By augmentation, the size of the dataset was multiplied by a factor of 6.
+Then I randomly shuffled the data set and put 20% of the data into a validation set. 
+
+Here is the summary of the dataset:
+
+| Dataset         		| Number of Data	| 
+|:---------------------:|:-----------------:| 
+| Training         		| 	54234				| 
+| Validation			| 	2260				|
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting.
+The ideal number of epochs was 8 as evidenced by the training history for the final model, which is shown below.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+![alt_text][training_history_more_data]
