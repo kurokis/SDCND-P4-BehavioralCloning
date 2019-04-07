@@ -93,7 +93,7 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road, and a lap focusing on smooth turns.
 
 For details about how I created the training data, see the next section. 
 
@@ -140,6 +140,7 @@ The final model architecture (model.py lines 80-93) consists of a convolution ne
 | Convolution 5x5	    | 2x2 stride, valid padding, RELU, outputs 5x37x48 		|
 | Convolution 3x3	    | 1x1 stride, valid padding, RELU, outputs 3x35x64	 	|
 | Convolution 3x3	    | 1x1 stride, valid padding, RELU, outputs 1x33x64 		|
+| Dropout		      	| dropout rate 0.5 										|
 | Flatten		      	| inputs 1x33x64,  outputs 2112							|
 | Fully connected       | inputs 2112, RELU,  outputs 100	    				|
 | Fully connected       | inputs 100, RELU,  outputs 50   						|
@@ -204,3 +205,6 @@ I used this training data for training the model. The validation set helped dete
 The ideal number of epochs was 8 as evidenced by the training history for the final model, which is shown below.
 
 ![alt_text][training_history_more_data]
+
+Here is [the link to the video](./writeup_video/run1.mp4) of autonomous driving using the final model.
+
