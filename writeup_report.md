@@ -1,31 +1,7 @@
 # **Behavioral Cloning** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Behavioral Cloning Project**
-
-The goals / steps of this project are the following:
-* Use the simulator to collect data of good driving behavior
-* Build, a convolution neural network in Keras that predicts steering angles from images
-* Train and validate the model with a training and validation set
-* Test that the model successfully drives around track one without leaving the road
-* Summarize the results with a written report
-
-
 [//]: # (Image References)
-
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
-
+[autonomous_demo]: ./writeup_images/autonomous_demo.gif "Autonomous Demo"
 [training_history_one_lap]: ./writeup_images/training_history_one_lap.png "Training History One Lap"
 [training_history_more_data]: ./writeup_images/training_history_more_data.png "Training History More Data"
 [architecture]: ./writeup_images/architecture.png "Architecture"
@@ -40,6 +16,20 @@ The goals / steps of this project are the following:
 [im_l]: ./writeup_images/im_l.jpg "Image Left"
 [im_c]: ./writeup_images/im_c.jpg "Image Center"
 [im_r]: ./writeup_images/im_r.jpg "Image Right"
+
+---
+
+**Behavioral Cloning Project**
+
+![alt text][autonomous_demo]
+
+The goals / steps of this project are the following:
+* Use the simulator to collect data of good driving behavior
+* Build, a convolution neural network in Keras that predicts steering angles from images
+* Train and validate the model with a training and validation set
+* Test that the model successfully drives around track one without leaving the road
+* Summarize the results with a written report
+
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -206,5 +196,5 @@ The ideal number of epochs was 8 as evidenced by the training history for the fi
 
 ![alt_text][training_history_more_data]
 
-Here is [the link to the video](./writeup_video/run1.mp4) of autonomous driving using the final model.
+Here is [the link](./writeup_video/run1.mp4) to the video of autonomous driving using the final model.
 
